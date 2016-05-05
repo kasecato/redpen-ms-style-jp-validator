@@ -1,0 +1,19 @@
+---
+machine:
+  timezone:
+    Asia/Tokyo
+  java:
+    version: oraclejdk8
+  post:
+    - sudo service mysql stop
+    - sudo service postgresql stop
+dependencies:
+  pre:
+    - mvn dependency:resolve
+test:
+  override:
+    - mvn integration-test
+  post:
+    - mvn clean test jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;

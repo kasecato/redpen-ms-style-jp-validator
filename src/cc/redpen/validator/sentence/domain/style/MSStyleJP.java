@@ -21,9 +21,10 @@ public interface MSStyleJP {
 
         validators
                 .stream()
-                .parallel()
+                //.parallel()
                 .forEach(validator
                         -> results.add(validator.apply(sentence)));
+
 
         return results;
     }
@@ -66,7 +67,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateKatakana = sentence
             -> valid.apply(
             sentence,
-            Error.Katakana.HALF_WIDTH
+            Error.Characters.Katakana.HALF_WIDTH
     );
 
 
@@ -76,7 +77,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateKatakanaKa = (sentence)
             -> valid.apply(
             sentence,
-            Error.Katakana.KA
+            Error.Characters.Katakana.KA
     );
 
     /**
@@ -85,7 +86,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateKatakanaKo = (sentence)
             -> valid.apply(
             sentence,
-            Error.Katakana.KO
+            Error.Characters.Katakana.KO
     );
 
     /**
@@ -96,6 +97,32 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateLongVowel = (sentence)
             -> null;
 
+    /**
+     * In principle, use a long vowel when a source English term has following suffixes: -er, -or, -ar
+     * In other cases, use a long vowel when a corresponding Katakana word has less than 4 characters. Note that the long vowel should be counted while geminative consonant (Sokuon, small “tu”, ッ), contracted sound (Yoon, small “ya”, “yu”, “yo”, ャ, ュ, ョ) and small a, i, u (ァ, ィ, ゥ) should not.
+     * When the English term consists of a prefix and a stem word, the words should be considered one by one.
+     * <p>
+     * Use a long vowel when a source English term has following terms should be handled differently.
+     */
+    Function<Sentence, ValidationResult> validateLongVowelExceptionUse = (sentence)
+            -> valid.apply(
+            sentence,
+            Error.Characters.LongVowel.EXCEPTION_USE
+    );
+
+
+    /**
+     * In principle, use a long vowel when a source English term has following suffixes: -er, -or, -ar
+     * In other cases, use a long vowel when a corresponding Katakana word has less than 4 characters. Note that the long vowel should be counted while geminative consonant (Sokuon, small “tu”, ッ), contracted sound (Yoon, small “ya”, “yu”, “yo”, ャ, ュ, ョ) and small a, i, u (ァ, ィ, ゥ) should not.
+     * When the English term consists of a prefix and a stem word, the words should be considered one by one.
+     * <p>
+     * Do not use a long vowel when a source English term has following terms should be handled differently.
+     */
+    Function<Sentence, ValidationResult> validateLongVowelExceptionNotUse = (sentence)
+            -> valid.apply(
+            sentence,
+            Error.Characters.LongVowel.EXCEPTION_NOT_USE
+    );
 
     /**
      * Half-width characters should be used unless it is necessary to use full-width characters.
@@ -105,7 +132,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateEnglishLetters = (sentence)
             -> valid.apply(
             sentence,
-            Error.EnglishLetters.FULL_WIDTH
+            Error.Characters.EnglishLetters.FULL_WIDTH
     );
 
     /**
@@ -115,7 +142,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesFullHalf = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.FULL_HALF
+            Error.Characters.Spaces.FULL_HALF
     );
 
     /**
@@ -128,7 +155,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesFullStop = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.FULL_STOP
+            Error.Characters.Spaces.FULL_STOP
     );
 
     /**
@@ -141,7 +168,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesComma = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.COMMA
+            Error.Characters.Spaces.COMMA
     );
 
     /**
@@ -154,7 +181,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesAngle = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.ANGLE
+            Error.Characters.Spaces.ANGLE
     );
 
     /**
@@ -167,7 +194,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesParentheses = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.PARENTHESES
+            Error.Characters.Spaces.PARENTHESES
     );
 
     /**
@@ -180,7 +207,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesQuotationMarks = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.QUOTATION_MARKS
+            Error.Characters.Spaces.QUOTATION_MARKS
     );
 
     /**
@@ -193,7 +220,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesBrackets = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.BRACKETS
+            Error.Characters.Spaces.BRACKETS
     );
 
     /**
@@ -206,7 +233,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesSlash = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.SLASH
+            Error.Characters.Spaces.SLASH
     );
 
     /**
@@ -219,7 +246,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesFullWidth = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.FULL_WIDTH
+            Error.Characters.Spaces.FULL_WIDTH
     );
 
     /**
@@ -232,7 +259,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesAccessKey = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.ACCESS_KEY
+            Error.Characters.Spaces.ACCESS_KEY
     );
 
 
@@ -247,7 +274,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesMeasurementUnit = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.MEASUREMENT_UNIT
+            Error.Characters.Spaces.MEASUREMENT_UNIT
     );
     */
 
@@ -261,7 +288,7 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesParenthesis = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.PARENTHESIS
+            Error.Characters.Spaces.PARENTHESIS
     );
 
     /**
@@ -274,8 +301,9 @@ public interface MSStyleJP {
     Function<Sentence, ValidationResult> validateSpacesMarkEndHalfStart = (sentence)
             -> valid.apply(
             sentence,
-            Error.Spaces.MARK_END_HALF_START
+            Error.Characters.Spaces.MARK_END_HALF_START
     );
+
 
     /**
      * Numbers can be written with Arabic and Chinese numerals.
@@ -317,11 +345,44 @@ public interface MSStyleJP {
     );
 
 
+    /**
+     * Humble expression (謙譲語).
+     * In general, do not use honorific expression and humble expression.
+     * In materials in which “supplier-customer” relationship should be considered, use 弊社.
+     */
+    Function<Sentence, ValidationResult> validateToneHumbleExpression = (sentence)
+            -> valid.apply(
+            sentence,
+            Error.Tone.HUMBLE_EXPRESSION
+    );
+
+    /**
+     * Polite expression (丁寧語).
+     * Do not use excessively polite expression unless necessary.
+     */
+    Function<Sentence, ValidationResult> validateTonePoliteExpression = (sentence)
+            -> valid.apply(
+            sentence,
+            Error.Tone.POLITE_EXPRESSION
+    );
+
+    /**
+     * Frequent Errors.
+     * Avoid using the term “不正” unless it pertains to something prohibited by law.
+     */
+    Function<Sentence, ValidationResult> validateFrequentErrorsFusei = (sentence)
+            -> valid.apply(
+            sentence,
+            Error.FrequentErrors.Fusei
+    );
+
     List<Function<Sentence, ValidationResult>> validators = Arrays.asList(
             validateKatakana,
             validateKatakanaKa,
             validateKatakanaKo,
             //validateLongVowel,
+            validateLongVowelExceptionUse,
+            validateLongVowelExceptionNotUse,
             validateEnglishLetters,
             validateSpacesFullHalf,
             validateSpacesFullStop,
@@ -336,9 +397,12 @@ public interface MSStyleJP {
             validateSpacesParenthesis,
             validateSpacesMarkEndHalfStart,
             validateArabicNumeralsFull,
-            validateChineseNumerals,
+            //validateChineseNumerals,
             validateMeasurementUnits,
-            validateMeasurementUnitsWithoutASpace
+            validateMeasurementUnitsWithoutASpace,
+            validateToneHumbleExpression,
+            validateTonePoliteExpression,
+            validateFrequentErrorsFusei
     );
 
     /*------------------------------------------------------------------------------------------------------------------
@@ -347,85 +411,102 @@ public interface MSStyleJP {
 
     interface Error {
 
-        interface Katakana {
+        interface Characters {
 
-            ErrorPattern HALF_WIDTH = ErrorPattern.create(
-                    "[｡-ﾟ]+",
-                    "Full-width characters should be used unless it is necessary to use half-width characters."
-            );
-            ErrorPattern KA = ErrorPattern.create(
-                    "\\d+ (ケ|ヶ|カ|ヵ)(年|月)",
-                    "Characters pronounced as “ka” should be written in Hiragana or Kanji."
-            );
-            ErrorPattern KO = ErrorPattern.create(
-                    "\\d+ (ケ|コ)",
-                    "Characters pronounced as “ko” should be written in Hiragana or Kanji."
-            );
-        }
+            interface Katakana {
 
-        interface EnglishLetters {
+                ErrorPattern HALF_WIDTH = ErrorPattern.create(
+                        "[｡-ﾟ]+",
+                        "Full-width characters should be used unless it is necessary to use half-width characters."
+                );
+                ErrorPattern KA = ErrorPattern.create(
+                        "\\d+ (ケ|ヶ|カ|ヵ)(年|月)",
+                        "Characters pronounced as “ka” should be written in Hiragana or Kanji."
+                );
+                ErrorPattern KO = ErrorPattern.create(
+                        "\\d+ (ケ|コ)",
+                        "Characters pronounced as “ko” should be written in Hiragana or Kanji."
+                );
+            }
 
-            ErrorPattern FULL_WIDTH = ErrorPattern.create(
-                    "[Ａ-ｚ０-９]+",
-                    "Half-width characters should be used unless it is necessary to use full-width characters."
-            );
-        }
+            interface LongVowel {
 
-        interface Spaces {
+                ErrorPattern EXCEPTION_USE = ErrorPattern.create(
+                        "(アカデミ|アドベンチャ|アレルギ|アスキ|バルコニ|バーベキュ|バースデ|ブルーベリ|カロリ|セレモニ|チータ|チンパンジ|コーヒ|カンパニ|コンピテンシ|マホガニ|マーキ|ムービ|ミステリ|ネイチャ|ネービ|アウトロ|ペイズリ|パンジ|パスキ|パススル|ペッカリ|フォトグラフィ|ポリシ|プレーリ|パブリシティ|クランベリ|デイリ|ドルビ|ドリルスル|イージ|エコノミ|エナジ|エネルギ|ファンシ|ファンタジ|フロッピ|フリークエンシ|ギャラリ|ハーモニ|ヘルシ|ヒーロ|ホットキ|ハウツ|ラズベリ|ランデブ|レスキュ|ロータリ|シーナリ|スクリュ|シーソ|シャンプ|スプレ|ストーリ|ストロベリ|サマリ|シナジ|タクシ|テンキ|タイムリ|トレジャ|トロリ|トロフィ|バリュ|インタビュ|ベンチャ|ジュエリ|ビクトリ|カンガル|ウィスキ|ワークフロ|ラグジュアリ)[^ー]",
+                        "Use a long vowel when a source English term has following terms should be handled differently."
+                );
 
-            ErrorPattern FULL_HALF = ErrorPattern.create(
-                    "([!-~][^ -~]|[^ -~][!-~])",
-                    "Between characters, a space should be inserted between full-width and half-width characters."
-            );
-            ErrorPattern FULL_STOP = ErrorPattern.create(
-                    "([。．] | [。．])",
-                    "Do not insert a space in ideographic full stop (。) and a half-width character."
-            );
-            ErrorPattern COMMA = ErrorPattern.create(
-                    "([、，] | [、，])",
-                    "Do not insert a space in ideographic ideographic comma (、) and a half-width character."
-            );
-            ErrorPattern ANGLE = ErrorPattern.create(
-                    "\\d+ [°]",
-                    "Do not insert a space in a numeral and unit of angle (°)."
-            );
-            ErrorPattern PARENTHESES = ErrorPattern.create(
-                    "(\\( | \\( |\\) | \\))",
-                    "Do not insert a space in each side of text enclosed by parentheses."
-            );
-            ErrorPattern QUOTATION_MARKS = ErrorPattern.create(
-                    "( \\?)",
-                    "Do not insert a space in each side of text enclosed by quotation marks."
-            );
-            ErrorPattern BRACKETS = ErrorPattern.create(
-                    "([\\{\\[\\<「] | [\\{\\[\\<「]|[\\}\\]\\>」] | [\\}\\]\\>」])",
-                    "Do not insert a space in each side of text enclosed by brackets."
-            );
-            ErrorPattern SLASH = ErrorPattern.create(
-                    "(/ | /)",
-                    "Do not insert a space in each side of slash."
-            );
-            ErrorPattern FULL_WIDTH = ErrorPattern.create(
-                    "( [？！：…])",
-                    "Do not insert a space in a full-width character and question mark (?)/exclamation mark (!)/colon (:)/ellipses (...) that ends the term."
-            );
-            ErrorPattern ACCESS_KEY = ErrorPattern.create(
-                    " \\([A-Z]\\)",
-                    "Do not insert a space in a character and access key enclosed by parentheses in the user interface."
-            );
-            /*Duplicated: Numbers.MEASUREMENT_UNITS_WITHOUT_A_SPACE*/
-            //ErrorPattern MEASUREMENT_UNIT = ErrorPattern.create(
-            //        " (%|mm)",
-            //        "Do not insert a space in % and mm (in the context of photograph/projection)."
-            //);
-            ErrorPattern PARENTHESIS = ErrorPattern.create(
-                    "([!-~]\\(|\\)[!-~])",
-                    "Do not insert a space in between a half-width parenthesis and half-width character outside."
-            );
-            ErrorPattern MARK_END_HALF_START = ErrorPattern.create(
-                    "([!！?？][!-~])",
-                    "Do not insert a space in Between question mark/exclamation mark that ends the term and a half-width character that starts the next term."
-            );
+                ErrorPattern EXCEPTION_NOT_USE = ErrorPattern.create(
+                        "(アクセラレータ|バリア|バザール|ベア|ビール|キャリア|センチメートル|クリア|コンパイラ|コネクタ|コンベヤ|メートル|ミリメートル|アウトドア|ピア|ポリエステル|プレミア|プロセッサ|プログラマ|プロペラ|ラジエータ|ドル|ドア|エンジニア|エクステリア|フロア|フォーマッタ|フロンティア|ギア|ユーモア|リア|レジスタ|スケジューラ|シニア|スリッパ|ステラ|タール|ターミネータ|トランジスタ|インドア|インテリア|ジュニア|ボランティア|リニア)[ー]",
+                        "Do not use a long vowel when a source English term has following terms should be handled differently."
+                );
+
+            }
+
+            interface EnglishLetters {
+
+                ErrorPattern FULL_WIDTH = ErrorPattern.create(
+                        "[Ａ-ｚ０-９]+",
+                        "Half-width characters should be used unless it is necessary to use full-width characters."
+                );
+            }
+
+            interface Spaces {
+
+                ErrorPattern FULL_HALF = ErrorPattern.create(
+                        "([!-~][^ -~，、。．　『』「」（）【】｛｝〈〉‘’“”《》/／：・]|[^ -~，、。．　『』「」（）【】｛｝〈〉‘’“”《》/／：・][!-~])",
+                        "Between characters, a space should be inserted between full-width and half-width characters."
+                );
+                ErrorPattern FULL_STOP = ErrorPattern.create(
+                        "([。．] | [。．])",
+                        "Do not insert a space in ideographic full stop (。) and a half-width character."
+                );
+                ErrorPattern COMMA = ErrorPattern.create(
+                        "([、，] | [、，])",
+                        "Do not insert a space in ideographic ideographic comma (、) and a half-width character."
+                );
+                ErrorPattern ANGLE = ErrorPattern.create(
+                        "\\d+ [°]",
+                        "Do not insert a space in a numeral and unit of angle (°)."
+                );
+                ErrorPattern PARENTHESES = ErrorPattern.create(
+                        "(\\( | \\( |\\) | \\))",
+                        "Do not insert a space in each side of text enclosed by parentheses."
+                );
+                ErrorPattern QUOTATION_MARKS = ErrorPattern.create(
+                        "( \\?)",
+                        "Do not insert a space in each side of text enclosed by quotation marks."
+                );
+                ErrorPattern BRACKETS = ErrorPattern.create(
+                        "([\\{\\[\\<「] | [\\{\\[\\<「]|[\\}\\]\\>」] | [\\}\\]\\>」])",
+                        "Do not insert a space in each side of text enclosed by brackets."
+                );
+                ErrorPattern SLASH = ErrorPattern.create(
+                        "(/ | /)",
+                        "Do not insert a space in each side of slash."
+                );
+                ErrorPattern FULL_WIDTH = ErrorPattern.create(
+                        "( [？！：…])",
+                        "Do not insert a space in a full-width character and question mark (?)/exclamation mark (!)/colon (:)/ellipses (...) that ends the term."
+                );
+                ErrorPattern ACCESS_KEY = ErrorPattern.create(
+                        " \\([A-Z]\\)",
+                        "Do not insert a space in a character and access key enclosed by parentheses in the user interface."
+                );
+                /*Duplicated: Numbers.MEASUREMENT_UNITS_WITHOUT_A_SPACE*/
+                //ErrorPattern MEASUREMENT_UNIT = ErrorPattern.create(
+                //        " (%|mm)",
+                //        "Do not insert a space in % and mm (in the context of photograph/projection)."
+                //);
+                ErrorPattern PARENTHESIS = ErrorPattern.create(
+                        "([!-~]\\(|\\)[!-~])",
+                        "Do not insert a space in between a half-width parenthesis and half-width character outside."
+                );
+                ErrorPattern MARK_END_HALF_START = ErrorPattern.create(
+                        "([!！?？][!-~])",
+                        "Do not insert a space in Between question mark/exclamation mark that ends the term and a half-width character that starts the next term."
+                );
+            }
         }
 
         interface Numbers {
@@ -448,6 +529,28 @@ public interface MSStyleJP {
             );
 
         }
+
+        interface Tone {
+
+            ErrorPattern HUMBLE_EXPRESSION = ErrorPattern.create(
+                    "(当社|我社)",
+                    "In materials in which “supplier-customer” relationship should be considered, use 弊社."
+            );
+            ErrorPattern POLITE_EXPRESSION = ErrorPattern.create(
+                    "(ご注意ください|ご確認ください)",
+                    "Do not use excessively polite expression unless necessary."
+            );
+        }
+
+        interface FrequentErrors {
+
+            ErrorPattern Fusei = ErrorPattern.create(
+                    "(不正)",
+                    "Avoid using the term “不正” unless it pertains to something prohibited by law."
+            );
+
+        }
+
 
 
     }

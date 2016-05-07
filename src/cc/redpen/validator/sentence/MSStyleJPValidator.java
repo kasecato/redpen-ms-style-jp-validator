@@ -21,6 +21,7 @@ public class MSStyleJPValidator extends Validator implements MSStyleJP {
 
         validateMSStyle(sentence)
                 .stream()
+                //.parallel()
                 .forEach(result
                         -> result.getErrorPositions()
                         .stream()

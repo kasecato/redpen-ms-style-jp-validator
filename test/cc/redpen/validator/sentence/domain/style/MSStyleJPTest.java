@@ -45,7 +45,7 @@ public class MSStyleJPTest implements MSStyleJP {
     }
 
     @Test
-    public void validateKatakana_KA_Failed_Test() {
+    public void validateKatakanaKa_Failed_Test() {
 
         // arrange
         final Sentence ngData = new Sentence("3 ケ月, 3 ヶ月, 3 カ月, 3 ヵ月", 0);
@@ -58,13 +58,40 @@ public class MSStyleJPTest implements MSStyleJP {
     }
 
     @Test
-    public void validateKatakana_KO_Failed_Test() {
+    public void validateKatakanaKo_Failed_Test() {
 
         // arrange
         final Sentence ngData = new Sentence("5 ケ, 5 コ", 0);
 
         // act
         final boolean actual = validateKatakanaKo.apply(ngData).isFailed();
+
+        // assert
+        assertEquals(true, actual);
+    }
+
+    @Test
+    public void validateLongVowelExceptionUse_Failed_Test() {
+
+        // arrange
+        final Sentence ngData = new Sentence("インタビュする", 0);
+
+        // act
+        final boolean actual = validateLongVowelExceptionUse.apply(ngData).isFailed();
+
+        // assert
+        assertEquals(true, actual);
+    }
+
+
+    @Test
+    public void validateLongVowelExceptionNotUse_Failed_Test() {
+
+        // arrange
+        final Sentence ngData = new Sentence("コンパイラー", 0);
+
+        // act
+        final boolean actual = validateLongVowelExceptionNotUse.apply(ngData).isFailed();
 
         // assert
         assertEquals(true, actual);
@@ -301,6 +328,45 @@ public class MSStyleJPTest implements MSStyleJP {
 
         // act
         final boolean actual = validateMeasurementUnitsWithoutASpace.apply(ngData).isFailed();
+
+        // assert
+        assertEquals(true, actual);
+    }
+
+    @Test
+    public void validateToneHumbleExpression_Failed_Test() {
+
+        // arrange
+        final Sentence ngData = new Sentence("当社", 0);
+
+        // act
+        final boolean actual = validateToneHumbleExpression.apply(ngData).isFailed();
+
+        // assert
+        assertEquals(true, actual);
+    }
+
+    @Test
+    public void validateTonePoliteExpression_Failed_Test() {
+
+        // arrange
+        final Sentence ngData = new Sentence("ご確認ください", 0);
+
+        // act
+        final boolean actual = validateTonePoliteExpression.apply(ngData).isFailed();
+
+        // assert
+        assertEquals(true, actual);
+    }
+
+    @Test
+    public void validateFrequentErrorsFusei_Failed_Test() {
+
+        // arrange
+        final Sentence ngData = new Sentence("ファイルが不正です。", 0);
+
+        // act
+        final boolean actual = validateFrequentErrorsFusei.apply(ngData).isFailed();
 
         // assert
         assertEquals(true, actual);

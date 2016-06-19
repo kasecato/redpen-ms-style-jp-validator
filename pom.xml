@@ -4,7 +4,7 @@
 
     <groupId>redpen.cc</groupId>
     <artifactId>ms-style-jp-validator</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <name>ms-style-jp-validator</name>
     <description>Microsoft Japanese Style Guide for RedPen</description>
 
@@ -79,12 +79,12 @@
         <dependency>
             <groupId>cc.redpen</groupId>
             <artifactId>redpen-core</artifactId>
-            <version>1.5.5</version>
+            <version>1.6.1</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.0.1</version>
+            <version>1.1.5</version>
         </dependency>
 
         <!-- Project dependencies -->

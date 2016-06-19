@@ -7,12 +7,12 @@ Microsoft Style Guides are collections of rules that define language and style c
 
 ## Install
 
-You can use it by copying the `ms-style-jp-validator-0.1.0.jar` file to the RedPen library directory ($REDPEN_HOME/lib).
+You can use it by copying the `ms-style-jp-validator-0.1.1.jar` file to the RedPen library directory ($REDPEN_HOME/lib).
 
 ### Mac OS X
 
 ```bash
-/usr/local/Cellar/redpen/1.4.4/libexec/lib/
+/usr/local/Cellar/redpen/1.6.1/libexec/lib/
 ```
 
 ### Windows
@@ -401,4 +401,4 @@ Incorrect (-)                                     | Correct (+)                 
 # References
 
 1. Microsoft, "Japanese Style Guide", https://www.microsoft.com/Language/en-US/StyleGuides.aspx
-1. RedPen, "Extending RedPen", http://redpen.cc/docs/1.5/index.html#extending
+1. RedPen, "Extending RedPen", http://redpen.cc/docs/latest/index.html#extending

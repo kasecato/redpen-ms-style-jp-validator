@@ -4,7 +4,7 @@
 
     <groupId>redpen.cc</groupId>
     <artifactId>ms-style-jp-validator</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <name>ms-style-jp-validator</name>
     <description>Microsoft Japanese Style Guide for RedPen</description>
 
@@ -43,7 +43,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.5.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -52,7 +52,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.5.201505241946</version>
+                <version>0.7.7.201606060606</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -65,7 +65,7 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>4.0.0</version>
+                <version>4.3.0</version>
                 <configuration>
                     <!--<repoToken></repoToken>-->
                     <sourceEncoding>UTF-8</sourceEncoding>
@@ -79,19 +79,19 @@
         <dependency>
             <groupId>cc.redpen</groupId>
             <artifactId>redpen-core</artifactId>
-            <version>1.6.1</version>
+            <version>1.7.4</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.5</version>
+            <version>1.1.7</version>
         </dependency>
 
         <!-- Project dependencies -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.12.2</version>
+            <version>1.16.10</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

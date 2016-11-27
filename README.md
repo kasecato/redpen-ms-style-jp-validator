@@ -9,10 +9,10 @@ Microsoft Style Guides are collections of rules that define language and style c
 
 You can use it by copying the `ms-style-jp-validator-0.1.2.jar` file to the RedPen library directory ($REDPEN_HOME/lib).
 
-### Mac OS X
+### macOS
 
 ```bash
-/usr/local/Cellar/redpen/1.7.4/libexec/lib/
+/usr/local/Cellar/redpen/1.7.6/libexec/lib/
 ```
 
 ### Windows

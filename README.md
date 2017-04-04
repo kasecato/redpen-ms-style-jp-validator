@@ -7,12 +7,12 @@ Microsoft Style Guides are collections of rules that define language and style c
 
 ## Install
 
-You can use it by copying the `ms-style-jp-validator-0.1.2.jar` file to the RedPen library directory ($REDPEN_HOME/lib).
+You can use it by copying the `ms-style-jp-validator-0.1.3.jar` file to the RedPen library directory ($REDPEN_HOME/lib).
 
 ### macOS
 
 ```bash
-/usr/local/Cellar/redpen/1.7.6/libexec/lib/
+/usr/local/Cellar/redpen/1.8.0/libexec/lib/
 ```
 
 ### Windows
@@ -41,7 +41,7 @@ redpen-conf.xml
 
 Incorrect (-)                                     | Correct (+)                                      | Support
 --------------------------------------------------|--------------------------------------------------|--------
-                                                  | 昭和 61 年 7 月 1 日 内閣告示第 1 号「現代仮名遣い」   | N/A
+x                                                 | 昭和 61 年 7 月 1 日 内閣告示第 1 号「現代仮名遣い」   | N/A
 
 
 #### Katakana
@@ -56,7 +56,7 @@ Incorrect (-)                                     | Correct (+)                 
 
 Incorrect (-)                                     | Correct (+)                                      | Support
 --------------------------------------------------|--------------------------------------------------|--------
-                                                  | 平成 3 年 6 月 28 日 内閣告示第 2 号「外来語 表記」   | N/A
+x                                                 | 平成 3 年 6 月 28 日 内閣告示第 2 号「外来語 表記」   | N/A
 アクセラレーター                                    | アクセラレータ                                     | ✅
 バリアー                                           | バリア                                            | ✅
 バザールー                                         | バザール                                          | ✅

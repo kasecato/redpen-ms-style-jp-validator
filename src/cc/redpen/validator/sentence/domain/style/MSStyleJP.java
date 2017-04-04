@@ -15,16 +15,16 @@ import java.util.regex.Matcher;
 public interface MSStyleJP {
 
 
-    default List<ValidationResult> validateMSStyle(Sentence sentence) {
+    default List<ValidationResult> validateMSStyle(final Sentence sentence) {
 
-        List<ValidationResult> results = new ArrayList<>();
+        final List<ValidationResult> results = new ArrayList<>();
 
         validators
                 .stream()
                 //.parallel()
-                .forEach(validator
-                        -> results.add(validator.apply(sentence)));
-
+                .map(v -> v.apply(sentence))
+                .map(results::add)
+                .count();
 
         return results;
     }
@@ -550,7 +550,6 @@ public interface MSStyleJP {
             );
 
         }
-
 
 
     }

@@ -4,29 +4,24 @@ import cc.redpen.model.Sentence;
 import cc.redpen.validator.sentence.domain.model.ErrorPattern;
 import cc.redpen.validator.sentence.domain.model.ValidationResult;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.regex.Matcher;
+import java.util.stream.Collectors;
 
 public interface MSStyleJP {
 
 
     default List<ValidationResult> validateMSStyle(final Sentence sentence) {
 
-        final List<ValidationResult> results = new ArrayList<>();
-
-        validators
+        return validators
                 .stream()
                 //.parallel()
                 .map(v -> v.apply(sentence))
-                .map(results::add)
-                .count();
-
-        return results;
+                .collect(Collectors.toList());
     }
 
 

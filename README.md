@@ -1,24 +1,24 @@
 # Microsoft Japanese Style Guide for RedPen
-[![Circle CI](https://circleci.com/gh/k--kato/redpen-ms-style-jp-validator.svg?style=svg)](https://circleci.com/gh/k--kato/redpen-ms-style-jp-validator)
-[![Coverage Status](https://coveralls.io/repos/github/k--kato/redpen-ms-style-jp-validator/badge.svg?branch=master)](https://coveralls.io/github/k--kato/redpen-ms-style-jp-validator?branch=master)
+[![Circle CI](https://circleci.com/gh/kasecato/redpen-ms-style-jp-validator.svg?style=svg)](https://circleci.com/gh/kasecato/redpen-ms-style-jp-validator)
+[![Coverage Status](https://coveralls.io/repos/github/kasecato/redpen-ms-style-jp-validator/badge.svg?branch=master)](https://coveralls.io/github/kasecato/redpen-ms-style-jp-validator?branch=master)
 [![License: Apache](http://img.shields.io/:license-apache-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 Microsoft Style Guides are collections of rules that define language and style conventions for specific languages. These rules usually include general localization guidelines, information on language style and usage in technical publications, and information on market-specific data formats.
 
 ## Install
 
-You can use it by copying the `ms-style-jp-validator-0.1.3.jar` file to the RedPen library directory ($REDPEN_HOME/lib).
+You can use it by copying the `ms-style-jp-validator-0.1.4.jar` file to the RedPen library directory ($REDPEN_HOME/lib).
 
 ### macOS
 
 ```bash
-/usr/local/Cellar/redpen/1.8.0/libexec/lib/
+/usr/local/Cellar/redpen/1.10.1/libexec/lib/
 ```
 
 ### Windows
 
 ```bash
-c:\Program Files\redpen-cli-1.0\lib\
+c:¥Program Files¥redpen-cli-1.0¥lib¥
 ```
 
 ## Usage
